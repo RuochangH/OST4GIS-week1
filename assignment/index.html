@@ -28,8 +28,20 @@
       	ext: 'png'
       }).addTo(map);
 
-      L.marker([39.952507, -75.187357]).addTo(map);
-      L.marker([39.956630, -75.206754]).addTo(map);
+      L.marker([39.952507, -75.187357]).addTo(map).bindPopup("<b>Ruochang's Homemade Cuisine</b><br>3131 Walnut ST");
+      L.marker([39.956630, -75.206754]).addTo(map).bindPopup("<b>Szechuan Restaurant</b><br>4205 Chestnut ST");
+
+      var popup = L.popup();
+
+      function onMapClick(e) {
+      popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(map);
+      }
+
+      map.on('click', onMapClick);
+
     </script>
   </body>
 </html>
