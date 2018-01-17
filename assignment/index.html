@@ -28,8 +28,15 @@
       	ext: 'png'
       }).addTo(map);
 
-      L.marker([39.952507, -75.187357]).addTo(map).bindPopup("<b>Ruochang's Homemade Cuisine</b><br>3131 Walnut ST");
-      L.marker([39.956630, -75.206754]).addTo(map).bindPopup("<b>Szechuan Restaurant</b><br>4205 Chestnut ST");
+      var marker1 = L.marker([39.952507, -75.187357]).addTo(map).bindPopup("<b>Ruochang's Homemade Cuisine</b><br>3131 Walnut ST");
+      var marker2 = L.marker([39.956630, -75.206754]).addTo(map).bindPopup("<b>Szechuan Restaurant</b><br>4205 Chestnut ST");
+
+      function onMarkerClick(e) {
+        map.setView(e.latlng,15);
+      };
+
+      marker1.on('click',onMarkerClick);
+      marker2.on('click',onMarkerClick)
 
       var popup = L.popup();
 
@@ -38,6 +45,7 @@
         .setLatLng(e.latlng)
         .setContent("You clicked the map at " + e.latlng.toString())
         .openOn(map);
+        map.setView(e.latlng, 15);
       }
 
       map.on('click', onMapClick);
